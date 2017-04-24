@@ -1,28 +1,21 @@
 package main
 
-import {
-  "fmt"
+import (
+  "log"
+)
 
-}
-
-func load_settings()  {
-
-}
-
-func start_listen_queue()  {
-
+func loadSettings()  {
 }
 
 // /////////////////// MAIN ///////////////
 
 func main() {
-  fmt.Printf("Starting App...\n")
+  log.Printf("[INFO] Starting App...")
 
-  fmt.Printf("Start load settings\n")
-  load_settings()
-  fmt.Printf("End load settings\n")
+  log.Printf("[INFO] Load App settings")
+  loadSettings()
 
-  fmt.Printf("Start load settings\n")
-  start_listen_queue()
-  fmt.Printf("End load settings\n")
+  log.Printf("[INFO] Start listening queue")
+  startListeningQueue()
+  log.Printf("[INFO] End load settings")
 }

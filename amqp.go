@@ -1,10 +1,10 @@
 package main
 
-import {
+import (
   "fmt"
   "log"
   "github.com/streadway/amqp"
-}
+)
 
 func failOnError(err error, msg string) {
   if err != nil {
@@ -13,8 +13,17 @@ func failOnError(err error, msg string) {
   }
 }
 
-func startListenQueue(){
-  conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
+func startListeningQueue(){
+  var AMPQ_CONN_STRING = "amqp://guest:guest@rabbit:5672/";
+  var QUEUE_NAME = "pgu_status";
+  // string AMPQ_CONN_STRING = "amqp://guest:guest@localhost:5672/"
+
+  // log.Printf("[INFO] QUEUE1")
+  // return
+  // log.Printf("[INFO] QUEUE2")
+
+
+  conn, err := amqp.Dial(AMPQ_CONN_STRING)
   failOnError(err, "Failed to connect to RabbitMQ")
   defer conn.Close()
 
@@ -23,8 +32,8 @@ func startListenQueue(){
   defer ch.Close()
 
   q, err := ch.QueueDeclare(
-    "hello", // name
-    false,   // durable
+    QUEUE_NAME, // name
+    true,   // durable
     false,   // delete when usused
     false,   // exclusive
     false,   // no-wait
