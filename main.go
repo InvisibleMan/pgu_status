@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	"pgu_status/queue"
+	// "pgu_status/queue"
 )
 
 func loadSettings() {
@@ -17,6 +17,6 @@ func main() {
 	loadSettings()
 
 	log.Printf("[INFO] Start listening queue")
-	queue.StartListeningQueue()
+	// queue.StartListeningQueue()
 	log.Printf("[INFO] End load settings")
 }

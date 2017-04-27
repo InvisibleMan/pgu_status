@@ -1,8 +1,8 @@
-package xml
+package msg
 
 import (
-	"encoding/xml"
-	"fmt"
+// "encoding/xml"
+// "fmt"
 )
 
 func testMyTest() {

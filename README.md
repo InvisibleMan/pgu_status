@@ -6,3 +6,7 @@
 ### Atom
 * [go-plus](https://atom.io/packages/go-plus)
 * go-debug
+
+### Test
+* <http://blog.alexellis.io/golang-writing-unit-tests/>
+* <https://golang.org/pkg/testing/#T>
