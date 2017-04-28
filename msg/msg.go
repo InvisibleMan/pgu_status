@@ -2,7 +2,7 @@ package msg
 
 import (
 	"encoding/xml"
-	"log"
+	// "log"
 )
 
 // Msg осуществляет поиск атрибутов
@@ -15,12 +15,14 @@ type Msg struct {
 	Error            string
 }
 
+// Success описывает успешный результат импорта
 type Success struct {
 	ExternalSystemID string `xml:"externalSystemId"`
 	ExternalCaseID   string `xml:"externalCaseId"`
 	UmmsID           string `xml:"ummsId"`
 }
 
+// Response описывает Полную XML успешного ответа
 type Response struct {
 	XMLName    xml.Name `xml:"response"`
 	EntityType string   `xml:"entityType"`
@@ -34,7 +36,7 @@ func Parse(data string) (msg Msg, err error) {
 
 	err = xml.Unmarshal([]byte(data), &v)
 	if err != nil {
-		log.Printf("[ERROR]: %v\n", err)
+		// log.Printf("[ERROR]: %v\n", err)
 		return Msg{}, err
 	}
 	return Msg{IsError: true}, nil
