@@ -16,4 +16,7 @@
 * <http://stackoverflow.com/questions/36625345/how-to-parse-huge-xml-file-with-various-elements-in-go#comment60849105_36626431>
 * <https://larry-price.com/blog/2015/12/04/xml-parsing-in-go>
 * <https://gist.github.com/bemasher/1224702>
-* <>
+
+### Oracle
+* <http://apextips.blogspot.ru/2015/09/making-connections-to-oracle-database.html>
+* <https://andrey.nering.com.br/2016/connecting-golang-to-oracle-database/>
