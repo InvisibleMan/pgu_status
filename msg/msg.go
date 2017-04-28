@@ -21,6 +21,7 @@ type Success struct {
 	UmmsID           string `xml:"ummsId"`
 }
 
+// Response from EPGU (??)
 type Response struct {
 	XMLName    xml.Name `xml:"response"`
 	EntityType string   `xml:"entityType"`
@@ -29,13 +30,13 @@ type Response struct {
 }
 
 // Parse xml-msg (form5) from RabbitMQ to Msg
-func Parse(data string) (msg Msg, err error) {
+func Parse(data string) (Msg, error) {
 	v := Response{}
-
-	err = xml.Unmarshal([]byte(data), &v)
+	err := xml.Unmarshal([]byte(data), &v)
 	if err != nil {
-		log.Printf("[ERROR]: %v\n", err)
+		log.Println("[ERROR]:", err)
 		return Msg{}, err
 	}
+
 	return Msg{IsError: true}, nil
 }
