@@ -2,3 +2,18 @@
 
 * https://www.rabbitmq.com/tutorials/tutorial-one-go.html
 * https://github.com/alco/gostart#faq3
+
+### Atom
+* [go-plus](https://atom.io/packages/go-plus)
+* go-debug
+
+### Test
+* <http://blog.alexellis.io/golang-writing-unit-tests/>
+* <https://golang.org/pkg/testing/#T>
+
+### XML
+* <https://play.golang.org/p/tGD8FXpLC3>
+* <http://stackoverflow.com/questions/36625345/how-to-parse-huge-xml-file-with-various-elements-in-go#comment60849105_36626431>
+* <https://larry-price.com/blog/2015/12/04/xml-parsing-in-go>
+* <https://gist.github.com/bemasher/1224702>
+* <>
