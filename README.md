@@ -20,3 +20,12 @@
 ### Oracle
 * <http://apextips.blogspot.ru/2015/09/making-connections-to-oracle-database.html>
 * <https://andrey.nering.com.br/2016/connecting-golang-to-oracle-database/>
+
+### Install Oracle Client
+https://help.ubuntu.com/community/Oracle%20Instant%20Client
+https://cmp.is/post/how-to-setup-oracle-with-golang/
+
+### Oracle Go Library
+https://github.com/mattn/go-oci8
+https://gowalker.org/github.com/mattn/go-oci8
+https://github.com/rana/ora

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+  <S:Body>
+    <ns5:processOutgoingTaskResponse xmlns="http://smev.gosuslugi.ru/rev111111" xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" xmlns:ns3="http://baseTypes.border.webservices.kernel.sx.fms.ru" xmlns:ns4="http://www.w3.org/2004/08/xop/include" xmlns:ns5="http://outgoingRequests.webservices.kernel.sx.fms.ru" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+      <ns3:errorCode>0</ns3:errorCode>
+      <ns3:taskResult>
+        <ns3:taskId>1931898153</ns3:taskId>
+        <ns3:state>READY</ns3:state>
+        <ns3:parameters>
+          <ns3:name>DESCRIPTION</ns3:name>
+          <ns3:value>operation completed</ns3:value>
+        </ns3:parameters>
+        <ns3:parameters>
+          <ns3:name>REQUEST_ID_REF</ns3:name>
+          <ns3:value>c09bbd32-4c4a-4961-9d76-e44d7fa585f6</ns3:value>
+        </ns3:parameters>
+        <ns3:parameters>
+          <ns3:name>RESULT</ns3:name>
+          <ns3:value>0</ns3:value>
+        </ns3:parameters>
+      </ns3:taskResult>
+    </ns5:processOutgoingTaskResponse>
+  </S:Body>
+</S:Envelope>
