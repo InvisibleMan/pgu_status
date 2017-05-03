@@ -2,9 +2,8 @@ package sx
 
 import (
 	"encoding/xml"
-	"io/ioutil"
-	// "log"
 	"errors"
+	"io/ioutil"
 	"net/http"
 	"pgu_status/types"
 	"strings"
@@ -17,7 +16,7 @@ type Service struct {
 
 // NewSXService create new instance SX
 // sample url http://1.99.30.38:8080/
-func NewSXService(endpoint string) *Service {
+func NewSXService(endpoint string) types.ISxService {
 	return &Service{endpoint}
 }
 
@@ -57,15 +56,14 @@ func (service Service) ChangePguCaseStatus(msg types.IPguStatusMsg) error {
 	if err != nil {
 		return err
 	}
-	res := string(b)
-	return Parse(res)
+	return Parse(b)
 }
 
 // Parse result
-func Parse(data string) error {
+func Parse(data []byte) error {
 	v := Envelop{}
 
-	err := xml.Unmarshal([]byte(data), &v)
+	err := xml.Unmarshal(data, &v)
 	if err != nil {
 		return err
 	}

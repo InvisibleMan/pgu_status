@@ -40,21 +40,16 @@ func (msg Msg) ErrorText() string {
 	return msg.errorText
 }
 
-// IResultParser interface
-type IResultParser interface {
-	Parse(msg string) (types.IPpotResultMsg, error)
-}
-
 // ResultParser object for parse msg
 type ResultParser struct{}
 
 // NewResultParser create new IPpotResult
-func NewResultParser() IResultParser {
+func NewResultParser() types.IResultParser {
 	return &ResultParser{}
 }
 
 // Parse input xml into Response struct or error
-func (parser ResultParser) Parse(data string) (types.IPpotResultMsg, error) {
+func (parser ResultParser) Parse(data []byte) (types.IPpotResultMsg, error) {
 	if msg, err := ParseSuccess(data); err == nil {
 		return msg, nil
 	}

@@ -1,3 +1,0 @@
-[ampq]
-connStr = "amqp://guest:guest@rabbit:5672/"
-queue = "pgu_status"

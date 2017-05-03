@@ -9,15 +9,15 @@ import (
 
 var ROOT string
 
-func ReadFile(path string) (xml string) {
+func ReadFile(path string) (xml []byte) {
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
 		panic(err)
 	}
-	return string(data)
+	return data
 }
 
-func ReadFixture(fixtureName string) (xml string) {
+func ReadFixture(fixtureName string) (xml []byte) {
 	return ReadFile(ROOT + "/../fixuters/" + fixtureName)
 }
 

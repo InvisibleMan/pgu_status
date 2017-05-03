@@ -22,9 +22,9 @@ type Form5 struct {
 }
 
 // ParseIntegrityError into Response struct
-func ParseIntegrityError(data string) (types.IPpotResultMsg, error) {
+func ParseIntegrityError(data []byte) (types.IPpotResultMsg, error) {
 	v := IntegrityError{}
-	err := xml.Unmarshal([]byte(data), &v)
+	err := xml.Unmarshal(data, &v)
 	if err != nil {
 		return nil, err
 	}
