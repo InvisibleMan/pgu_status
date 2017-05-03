@@ -3,7 +3,7 @@
   <description>Отсутствует обязательный заголовок сообщения: тип сообщения (type)</description>
   <body>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;hf:form5 schemaVersion=&quot;1.0&quot; xmlns=&quot;http://www.w3.org/2000/09/xmldsig#&quot; xmlns:corr=&quot;http://umms.fms.gov.ru/replication/core/correction&quot; xmlns:date=&quot;http://exslt.org/dates-and-times&quot; xmlns:ds=&quot;http://www.w3.org/2000/09/xmldsig#&quot; xmlns:fcc=&quot;http://umms.fms.gov.ru/replication/foreign-citizen-core&quot; xmlns:h=&quot;http://umms.fms.gov.ru/replication/hotel&quot; xmlns:hf=&quot;http://umms.fms.gov.ru/replication/hotel/form5&quot; xmlns:hr=&quot;http://umms.fms.gov.ru/hotel/hotel-response&quot; xmlns:mig=&quot;http://umms.fms.gov.ru/replication/migration&quot; xmlns:mr=&quot;http://umms.fms.gov.ru/replication/migration/staying&quot; xmlns:mre=&quot;http://umms.fms.gov.ru/replication/migration/staying/case-edit&quot; xmlns:mu=&quot;http://umms.fms.gov.ru/replication/migration/staying/unreg&quot; xmlns:ns10=&quot;http://umms.fms.gov.ru/replication/hotel/form5&quot; xmlns:ns2=&quot;http://umms.fms.gov.ru/replication/core&quot; xmlns:pay=&quot;http://umms.fms.gov.ru/replication/payment&quot; xmlns:pgufg=&quot;http://idecs.atc.ru/pgufg/ws/fgapc/&quot; xmlns:umms=&quot;http://umms.fms.gov.ru/replication/core&quot;&gt;
-  &lt;umms:uid&gt;161015734&lt;/umms:uid&gt;
+  &lt;umms:uid&gt;161015735&lt;/umms:uid&gt;
   &lt;umms:supplierInfo&gt;7100000008002021&lt;/umms:supplierInfo&gt;
   &lt;umms:subdivision&gt;
     &lt;umms:type&gt;officialOrgan&lt;/umms:type&gt;

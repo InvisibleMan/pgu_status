@@ -40,7 +40,7 @@ func main() {
 // CreateCaseFinder create
 func CreateCaseFinder() *sx.TaskFinder {
 	connString := "sx_own01/sx@1.99.17.68:1521/AIXPFMS"
-	finder, err := sx.NewCaseFinder(connString)
+	finder, err := sx.NewTaskFinder(connString)
 	if err != nil {
 		errMsg := fmt.Sprintf("[ERROR] Can't connect to SX DB. Error: %v", err)
 		log.Print(errMsg)

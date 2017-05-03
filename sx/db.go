@@ -21,9 +21,9 @@ type Task struct {
 	// Comment    string
 }
 
-// NewCaseFinder create new instance
+// NewTaskFinder create new instance
 // connection string format "user/passw@host:port/sid"
-func NewCaseFinder(connString string) (*TaskFinder, error) {
+func NewTaskFinder(connString string) (*TaskFinder, error) {
 	db, err := sql.Open("oci8", connString)
 	if err != nil {
 		return nil, err
