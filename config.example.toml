@@ -1,6 +1,7 @@
 [ampq]
 connStr = "amqp://guest:guest@localhost:5672/"
 queue = "hotelsOut"
+errorQueue = "error"
 
 [sx]
 endpoint = "http://1.99.30.38:8080/sxcs/outgoingRequests"
