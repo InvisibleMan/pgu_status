@@ -1,8 +1,8 @@
 [ampq]
 connStr = "amqp://guest:guest@localhost:5672/"
-queue = "detelete_me_now"
+queue = "hotelsOut"
 
 [sx]
-endpoint := "http://1.99.30.38:8080/sxcs/outgoingRequests"
+endpoint = "http://1.99.30.38:8080/sxcs/outgoingRequests"
 # endpoint = "http://localhost:8080/sxcs/outgoingRequests"
 connString = "user/password@1.99.17.68:1521/AIXPFMS"

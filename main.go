@@ -17,7 +17,7 @@ func main() {
 
 	sxService := sx.NewSXService(config.GetString("sx.endpoint"))
 	msgParser := ppot.NewResultParser()
-	listerner := queue.NewListener(config.GetString("ampq.connStr"), config.GetString("ampq.queue"))
+	listerner := queue.NewListener(config.GetString("ampq.connStr"), config.GetString("ampq.queue"), config.GetString("ampq.errorQueue"))
 	defer listerner.Close()
 
 	log.Printf("[INFO] Start listening queue")

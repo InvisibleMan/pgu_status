@@ -2,9 +2,8 @@ package sx
 
 import (
 	"encoding/xml"
-	"io/ioutil"
-	// "log"
 	"errors"
+	"io/ioutil"
 	"net/http"
 	"pgu_status/types"
 	"strings"
@@ -57,15 +56,14 @@ func (service Service) ChangePguCaseStatus(msg types.IPguStatusMsg) error {
 	if err != nil {
 		return err
 	}
-	res := string(b)
-	return Parse(res)
+	return Parse(b)
 }
 
 // Parse result
-func Parse(data string) error {
+func Parse(data []byte) error {
 	v := Envelop{}
 
-	err := xml.Unmarshal([]byte(data), &v)
+	err := xml.Unmarshal(data, &v)
 	if err != nil {
 		return err
 	}
