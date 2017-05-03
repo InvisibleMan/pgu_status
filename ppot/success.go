@@ -20,9 +20,9 @@ type Response struct {
 }
 
 // ParseSuccess input xml into Response struct or error
-func ParseSuccess(data string) (types.IPpotResultMsg, error) {
+func ParseSuccess(data []byte) (types.IPpotResultMsg, error) {
 	v := Response{}
-	err := xml.Unmarshal([]byte(data), &v)
+	err := xml.Unmarshal(data, &v)
 	if err != nil {
 		return nil, err
 	}

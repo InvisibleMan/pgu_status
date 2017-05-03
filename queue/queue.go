@@ -2,11 +2,17 @@ package queue
 
 import (
 	"fmt"
-	"log"
-	"pgu_status/config"
-
 	"github.com/streadway/amqp"
+	"log"
+	"pgu_status/types"
 )
+
+// Listener has msgs
+type Listener struct {
+	msgs <-chan amqp.Delivery
+	conn *amqp.Connection
+	ch   *amqp.Channel
+}
 
 func failOnError(err error, msg string) {
 	if err != nil {
@@ -15,23 +21,15 @@ func failOnError(err error, msg string) {
 	}
 }
 
-// StartListeningQueue with settings from config.toml
-func StartListeningQueue() {
-	connStr := config.GetString("ampq.connStr")
-	queueName := config.GetString("ampq.queue")
-	// string AMPQ_CONN_STRING = "amqp://guest:guest@localhost:5672/"
-
-	// log.Printf("[INFO] QUEUE1")
-	// return
-	// log.Printf("[INFO] QUEUE2")
-
+// NewListener with settings from config.toml
+func NewListener(connStr string, queueName string) *Listener {
 	conn, err := amqp.Dial(connStr)
 	failOnError(err, "Failed to connect to RabbitMQ")
-	defer conn.Close()
+	// defer conn.Close()
 
 	ch, err := conn.Channel()
 	failOnError(err, "Failed to open a channel")
-	defer ch.Close()
+	// defer ch.Close()
 
 	q, err := ch.QueueDeclare(
 		queueName, // name
@@ -46,22 +44,50 @@ func StartListeningQueue() {
 	msgs, err := ch.Consume(
 		q.Name, // queue
 		"",     // consumer
-		true,   // auto-ack
+		false,  // auto-ack
 		false,  // exclusive
 		false,  // no-local
 		false,  // no-wait
 		nil,    // args
 	)
 	failOnError(err, "Failed to register a consumer")
+	// log.Printf("[INFO] Starting listen queue '%s'", queueName)
 
+	return &Listener{msgs, conn, ch}
+}
+
+// Start Запускает очередь на прослушивание
+func (listener Listener) Start(parser types.IResultParser, finder types.ITaskFinder, sxService types.ISxService) {
 	forever := make(chan bool)
 
 	go func() {
-		for d := range msgs {
+		for d := range listener.msgs {
 			log.Printf("Received a message: %s", d.Body)
+			msg, err := parser.Parse(d.Body)
+			if err != nil {
+				log.Printf("[ERROR] Parse exeption: %v", err)
+				continue
+			}
+
+			msg2, err := finder.Find(msg.UmmsID())
+			if err != nil {
+				log.Printf("[ERROR] Find in SX DB exeption: %v", err)
+				continue
+			}
+
+			log.Printf("[INFO] TRY UPDATE CASE on PGU %v", msg2)
 		}
 	}()
 
-	log.Printf(" [*] Waiting for messages. To exit press CTRL+C")
 	<-forever
+}
+
+// Close test DB connection
+func (listener Listener) Close() {
+	if listener.ch != nil {
+		listener.ch.Close()
+	}
+	if listener.conn != nil {
+		listener.conn.Close()
+	}
 }

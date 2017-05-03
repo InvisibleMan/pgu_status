@@ -32,7 +32,7 @@ func TestParse(t *testing.T) {
 	}
 
 	for _, table := range tables {
-		msg, _ := NewResultParser().Parse(ReadFixture(table.path))
+		msg, _ := NewResultParser().Parse([]byte(ReadFixture(table.path)))
 		if msg.IsError() != table.er {
 			t.Errorf("Result was incorrect, got: %t, want: %t.", msg.IsError(), table.er)
 		}

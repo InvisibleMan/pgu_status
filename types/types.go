@@ -1,10 +1,5 @@
 package types
 
-import (
-// "fmt"
-// "log"
-)
-
 // IPpotResultMsg описание сообщения от ППОТ
 type IPpotResultMsg interface {
 	ExternalSystemID() string
@@ -28,6 +23,17 @@ type IPguStatusMsg interface {
 	RequestID() string
 	TechStatus() string
 	Comment() string
+}
+
+// IResultParser interface
+type IResultParser interface {
+	Parse(msg []byte) (IPpotResultMsg, error)
+}
+
+// ITaskFinder interface
+type ITaskFinder interface {
+	Find(string) (ISxMsg, error)
+	Close()
 }
 
 ////////////////// Implementing /////////
@@ -64,6 +70,21 @@ func (msg PguStatusMsg) TechStatus() string {
 // RequestID return order ID
 func (msg PguStatusMsg) RequestID() string {
 	return msg.requestID
+}
+
+// // IConfig предоставляет доступ к конфигу приложения
+// type IConfig interface {
+// 	GetString(string) string
+// }
+
+// IListener предостваляет доступ к слушателю очереди
+type IListener interface {
+	Start(IResultParser, ITaskFinder, ISxService)
+}
+
+// ISxService предостваляет доступ к сервису обновления дела на ПГУ
+type ISxService interface {
+	ChangePguCaseStatus(IPguStatusMsg) error
 }
 
 // MakePguStatusMsg create new PguStatusMsg

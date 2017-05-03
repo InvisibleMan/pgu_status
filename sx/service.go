@@ -17,7 +17,7 @@ type Service struct {
 
 // NewSXService create new instance SX
 // sample url http://1.99.30.38:8080/
-func NewSXService(endpoint string) *Service {
+func NewSXService(endpoint string) types.ISxService {
 	return &Service{endpoint}
 }
 
