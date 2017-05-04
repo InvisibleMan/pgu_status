@@ -77,6 +77,7 @@ func (listener Listener) QueueError(d *amqp.Delivery) {
 		amqp.Publishing{
 			ContentType: d.ContentType,
 			Body:        d.Body,
+			Headers:     d.Headers,
 		})
 	if err != nil {
 		panic(err)
