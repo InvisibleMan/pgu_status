@@ -82,7 +82,7 @@ func (listener Listener) QueueError(d *amqp.Delivery) {
 	if err != nil {
 		panic(err)
 	}
-	d.Ack(false)
+	d.Ack(true)
 }
 
 // Start Запускает очередь на прослушивание
@@ -91,34 +91,34 @@ func (listener Listener) Start(parser types.IResultParser, finder types.ITaskFin
 
 	go func() {
 		for d := range listener.msgs {
-			log.Printf("[INFO] Received a message")
+			log.Printf("\n[INFO] Received a message")
 			msg, err := parser.Parse(d.Body)
 			if err != nil {
 				log.Printf("[ERROR] Parse exeption: '%v'. Body:\n'%v'", err, d.Body)
 				listener.QueueError(&d)
 				continue
 			}
-			log.Printf("[INFO] Parse a message (UmmsID: '%v')", msg.UmmsID())
+			log.Printf("[INFO] Parse a message (ExternalCaseID: '%v')", msg.ExternalCaseID())
 
-			msg2, err := finder.Find(msg.UmmsID())
-			if err != nil {
-				log.Printf("[ERROR] Find in SX DB exeption: %v", err)
+			msg2, err2 := finder.Find(msg.ExternalCaseID())
+			if err2 != nil {
+				log.Printf("[ERROR] Find in SX DB exeption: %v", err2)
 				listener.QueueError(&d)
 				continue
 			}
-			log.Printf("[INFO] Find SX Task (UmmsID: '%v'. MessageID: '%v')", msg.UmmsID(), msg2.ExtNumber())
+			log.Printf("[INFO] Find SX Task (ExternalCaseID: '%v'. MessageID: '%v')", msg.ExternalCaseID(), msg2.ExtNumber())
 
 			msg3 := types.MakePguStatusMsg(msg, msg2)
-			err = sxService.ChangePguCaseStatus(msg3)
-			if err != nil {
-				log.Printf("[ERROR] Update PGU Case exeption: %v", err)
+			err3 := sxService.ChangePguCaseStatus(msg3)
+			if err3 != nil {
+				log.Printf("[ERROR] Update PGU Case exeption: %v", err3)
 				listener.QueueError(&d)
 				continue
 			}
-			log.Printf("[INFO] UPDATE CASE on PGU (UmmsID: '%v'. Comment: '%v')", msg.UmmsID(), msg3.Comment())
+			log.Printf("[INFO] UPDATE CASE on PGU (OrderID: '%v'. Comment: '%v')", msg3.OrderID(), msg3.Comment())
 
-			d.Ack(false)
-			log.Printf("[INFO] Ack message (UmmsID: '%v')", msg.UmmsID())
+			d.Ack(true)
+			log.Printf("[INFO] Ack message (ExternalCaseID: '%v')", msg.ExternalCaseID())
 		}
 	}()
 

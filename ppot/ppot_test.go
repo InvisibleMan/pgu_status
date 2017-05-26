@@ -23,22 +23,25 @@ func ReadFixture(fixtureName string) (xml string) {
 
 func TestParse(t *testing.T) {
 	tables := []struct {
-		path   string
-		er     bool
-		ummsID string
+		path           string
+		er             bool
+		ExternalCaseID string
 	}{
-		{"xml/response_success.xml", false, "161015734"},
-		{"xml/response_fail.xml", true, "161015735"},
+		{"xml/ppot_response/success_01.xml", false, "169568750"},
+		{"xml/ppot_response/success_02.xml", false, "161015734"},
+
+		{"xml/ppot_response/fail_01.xml", true, "169568750"},
+		{"xml/ppot_response/fail_05.xml", true, "161015734"},
 	}
 
 	for _, table := range tables {
 		msg, _ := NewResultParser().Parse([]byte(ReadFixture(table.path)))
 		if msg.IsError() != table.er {
-			t.Errorf("Result was incorrect, got: %t, want: %t.", msg.IsError(), table.er)
+			t.Errorf("Result was incorrect. File: '%s', got: %t, want: %t.", table.path, msg.IsError(), table.er)
 		}
 
-		if msg.UmmsID() != table.ummsID {
-			t.Errorf("UmmsID was incorrect, got: %s, want: %s.", msg.UmmsID(), table.ummsID)
+		if msg.ExternalCaseID() != table.ExternalCaseID {
+			t.Errorf("UmmsID was incorrect, got: %s, want: %s.", msg.ExternalCaseID(), table.ExternalCaseID)
 		}
 	}
 }

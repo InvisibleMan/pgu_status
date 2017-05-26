@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ns2:response schemaVersion="1.0" xmlns="http://www.w3.org/2000/09/xmldsig#" xmlns:ns2="http://umms.fms.gov.ru/hotel/hotel-response">
+  <ns2:requestId>169568750</ns2:requestId>
+  <ns2:entityType>MigCase</ns2:entityType>
+  <ns2:error>
+    <ns2:externalSystemId>7100000008002021</ns2:externalSystemId>
+    <ns2:externalCaseId>169568750</ns2:externalCaseId>
+    <ns2:errorMsg>ru.gov.fms.umms.services.core.ValidationException: Код гостиницы в номере уведомления не соответствует коду гостиницы указанного поставщика at ru.gov.fms.umms.importer.services.hotel.HotelImporterService.validateNotificationNumber(HotelImporterService.java:805)</ns2:errorMsg>
+  </ns2:error>
+</ns2:response>

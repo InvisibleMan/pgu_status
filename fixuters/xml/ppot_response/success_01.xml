@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ns2:response schemaVersion="1.0" xmlns="http://www.w3.org/2000/09/xmldsig#" xmlns:ns2="http://umms.fms.gov.ru/hotel/hotel-response">
+  <ns2:requestId>169568750</ns2:requestId>
+  <ns2:entityType>MigCase</ns2:entityType>
+  <ns2:success>
+    <ns2:notificationNumber>02/710001/17/000001</ns2:notificationNumber>
+    <ns2:externalSystemId>7100000008002021</ns2:externalSystemId>
+    <ns2:externalCaseId>169568750</ns2:externalCaseId>
+    <ns2:ummsId>2003093</ns2:ummsId>
+  </ns2:success>
+</ns2:response>

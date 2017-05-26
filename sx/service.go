@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"errors"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"pgu_status/types"
 	"strings"
@@ -56,6 +57,8 @@ func (service Service) ChangePguCaseStatus(msg types.IPguStatusMsg) error {
 	if err != nil {
 		return err
 	}
+
+	log.Printf("[INFO] REQUEST:\n%v\nRESPONSE:\n%v", req, string(b))
 	return Parse(b)
 }
 

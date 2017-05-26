@@ -1,7 +1,6 @@
 package ppot
 
 import (
-	"errors"
 	// "log"
 	"pgu_status/types"
 )
@@ -50,13 +49,16 @@ func NewResultParser() types.IResultParser {
 
 // Parse input xml into Response struct or error
 func (parser ResultParser) Parse(data []byte) (types.IPpotResultMsg, error) {
-	if msg, err := ParseSuccess(data); err == nil {
+	msg, err := ParseSuccess(data)
+
+	if err == nil {
 		return msg, nil
 	}
 
-	if msg, err := ParseIntegrityError(data); err == nil {
+	msg, err = ParseIntegrityError(data)
+	if err == nil {
 		return msg, nil
 	}
 
-	return nil, errors.New("Не удалось разобрать ответ из ППОТ")
+	return nil, err
 }
