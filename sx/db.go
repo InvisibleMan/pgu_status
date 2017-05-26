@@ -55,7 +55,7 @@ func NewTaskFinder(connString string) types.ITaskFinder {
 
 // Find deal in DB
 func (finder TaskFinder) Find(ummsID string) (types.ISxMsg, error) {
-	SQL := `select REASONCASENUMBER, EXTNUMBER, REASONSERVICECODE, FOIVCODE from INTASK where REASONCASENUMBER = :1 and Rownum < 2`
+	SQL := `select REASONCASENUMBER, EXTNUMBER, REASONSERVICECODE, FOIVCODE from (select REASONCASENUMBER, EXTNUMBER, REASONSERVICECODE, FOIVCODE from INTASK where REASONCASENUMBER = :1 order by CREATEDDT asc) where Rownum < 2`
 
 	rows, err := finder.DB.Query(SQL, ummsID)
 	if err != nil {
@@ -64,7 +64,7 @@ func (finder TaskFinder) Find(ummsID string) (types.ISxMsg, error) {
 	defer rows.Close()
 
 	if !rows.Next() {
-		return Task{}, errors.New("Can't find Case by CaseID")
+		return Task{}, errors.New("Can't find Case by CaseID: " + ummsID)
 	}
 
 	var caseID string

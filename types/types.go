@@ -64,7 +64,7 @@ func (msg PguStatusMsg) ReasonServiceCode() string {
 
 // TechStatus return order ID
 func (msg PguStatusMsg) TechStatus() string {
-	return msg.requestID
+	return msg.techStatus
 }
 
 // RequestID return order ID

@@ -21,6 +21,6 @@ func main() {
 	defer listerner.Close()
 
 	log.Printf("[INFO] Start listening queue")
-	log.Printf("[*] Waiting for messages. To exit press CTRL+C")
+	log.Printf("[*] Waiting for messages. To exit press CTRL+C\n")
 	listerner.Start(msgParser, sxFinder, sxService)
 }
