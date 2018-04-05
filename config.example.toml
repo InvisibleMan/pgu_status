@@ -4,6 +4,5 @@ queue = "hotelsOut"
 errorQueue = "error"
 
 [sx]
-endpoint = "http://1.99.30.38:8080/sxcs/outgoingRequests"
-# endpoint = "http://localhost:8080/sxcs/outgoingRequests"
-connString = "user/password@1.99.17.68:1521/AIXPFMS"
+endpoint= "http://localhost:8080/sxcs/outgoingRequests"
+connString= "user/password@localhost:1521/AIXPFMS"
